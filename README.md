@@ -11,6 +11,7 @@
 [![CI](https://github.com/Danil0ws/pangeia/actions/workflows/ci.yml/badge.svg)](https://github.com/Danil0ws/pangeia/actions/workflows/ci.yml)
 [![Docs](https://img.shields.io/badge/docs-danil0ws.github.io-blue)](https://danil0ws.github.io/pangeia/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Wiki](https://img.shields.io/badge/wiki-community-blue)](https://github.com/Danil0ws/pangeia/wiki)
 
 </div>
 
