@@ -12,7 +12,8 @@ check() {
 }
 
 for file in README.md README.en.md README.zh-CN.md README.ru.md \
-    LICENSE CHANGELOG.md CONTRIBUTING.md CODE_OF_CONDUCT.md VERSION; do
+    LICENSE CHANGELOG.md CONTRIBUTING.md CODE_OF_CONDUCT.md VERSION \
+    docs/assets/logo.png; do
     check "$file"
 done
 

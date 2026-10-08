@@ -9,6 +9,8 @@ copyright: MIT © Danilo Rodrigues
 theme:
   name: material
   language: pt
+  logo: assets/logo.png
+  favicon: assets/logo.png
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default

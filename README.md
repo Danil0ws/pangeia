@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/assets/logo.png" alt="Pangeia" width="150">
+
 # Pangeia
 
 **Um comando para instalar qualquer pacote em qualquer Linux.**

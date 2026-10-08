@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/assets/logo.png" alt="Pangeia" width="150">
+
 # Pangeia
 
 **一条命令，在任意 Linux 发行版上安装任意软件包。**

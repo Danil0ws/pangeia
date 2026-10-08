@@ -29,6 +29,8 @@ release-please. Do not edit generated sections by hand.
   shell integration idempotently.
 - Dependency-free test suite with an isolated `PATH` for detection and a
   dry-run mode for the adapters.
+- Project logo (`docs/assets/logo.png`) used by the READMEs and by the
+  documentation theme.
 - GitHub Actions for continuous integration (Linux + macOS matrix,
   ShellCheck, shfmt), automatic releases and a multi-language
   documentation site on GitHub Pages.

@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/assets/logo.png" alt="Pangeia" width="150">
+
 # Pangeia
 
 **Одна команда, чтобы установить любой пакет в любом дистрибутиве Linux.**

@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/assets/logo.png" alt="Pangeia" width="150">
+
 # Pangeia
 
 **One command to install any package on any Linux distribution.**
