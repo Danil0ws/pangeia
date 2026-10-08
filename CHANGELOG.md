@@ -27,6 +27,9 @@ release-please. Do not edit generated sections by hand.
 - One-line installer (`curl ... | bash`) that installs into
   `~/.local/share/pangeia`, links `~/.local/bin/pangeia` and wires the
   shell integration idempotently.
+- Installer fallbacks: `wget` when `curl` is missing, and in-place
+  installation from a local checkout when the machine has no network tool
+  at all.
 - Dependency-free test suite with an isolated `PATH` for detection and a
   dry-run mode for the adapters.
 - Project logo (`docs/assets/logo.png`) used by the READMEs and by the

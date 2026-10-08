@@ -6,6 +6,8 @@
 curl -fsSL https://raw.githubusercontent.com/Danil0ws/pangeia/main/install.sh | bash
 ```
 
+Нет `curl`? `wget -qO- <тот же URL> | bash`.
+
 Что он делает:
 
 1. Скачивает Pangeia в `~/.local/share/pangeia` (или `$XDG_DATA_HOME`).
@@ -63,5 +65,12 @@ rm -rf ~/.local/share/pangeia ~/.local/bin/pangeia
 
 ## Требования
 
-Ничего, кроме `bash` и `git` либо `curl`. Зависимостей во время работы нет:
-Pangeia — это чистый shell.
+`bash` и что-то одно из `git`, `curl`, `wget`. Зависимостей во время работы
+нет: Pangeia — это чистый shell.
+
+Нет ни `curl`, ни `git`? Два выхода, без дополнительных загрузок:
+
+- поставить одно из них менеджером самого дистрибутива:
+  `apt-get install curl`, `dnf install curl`, `apk add curl`;
+- либо скопировать этот репозиторий на машину (флешка, `scp`) и запустить
+  `./install.sh` внутри него — локальная копия ставится вместо загрузки.

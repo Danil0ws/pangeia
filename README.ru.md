@@ -55,6 +55,13 @@ pkg install git curl vim
 
 Хотите клонировать? `git clone https://github.com/Danil0ws/pangeia && cd pangeia && ./install.sh`
 
+Нет `curl`? `wget -qO- https://raw.githubusercontent.com/Danil0ws/pangeia/main/install.sh | bash`.
+
+Нет ни `curl`, ни `git`? Поставьте любой из них своим пакетным менеджером
+(`apt-get install curl`, `apk add curl`), либо скопируйте этот репозиторий на
+машину и запустите `./install.sh` из него: локальная копия ставится на месте,
+без скачивания.
+
 ## Использование
 
 ```bash

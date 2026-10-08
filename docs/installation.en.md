@@ -6,6 +6,8 @@
 curl -fsSL https://raw.githubusercontent.com/Danil0ws/pangeia/main/install.sh | bash
 ```
 
+No `curl`? `wget -qO- <same URL> | bash`.
+
 What it does:
 
 1. Downloads Pangeia into `~/.local/share/pangeia` (or `$XDG_DATA_HOME`).
@@ -63,5 +65,13 @@ rm -rf ~/.local/share/pangeia ~/.local/bin/pangeia
 
 ## Requirements
 
-None beyond `bash` and `git` or `curl`. There are no runtime dependencies:
+`bash` and one of `git`, `curl` or `wget`. There are no runtime dependencies:
 Pangeia is pure shell.
+
+No `curl` and no `git`? Two ways out, without downloading anything new:
+
+- install one of them with the distribution's own manager:
+  `apt-get install curl`, `dnf install curl`, `apk add curl`;
+- or copy this repository to the machine (USB stick, `scp`) and run
+  `./install.sh` inside it — a local checkout is installed in place of the
+  download.
