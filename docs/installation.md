@@ -15,12 +15,17 @@ O que ele faz:
 3. Adiciona a integração de shell ao `~/.bashrc` e ao `~/.zshrc`,
    sem duplicar a linha se você rodar de novo.
 
-Abra um shell novo e teste:
+O `pkg` é uma função de shell: ela só existe depois que o shell *relê* o seu
+arquivo de inicialização. Abra um shell novo ou carregue agora:
 
 ```bash
+source ~/.bashrc        # zsh: source ~/.zshrc
 pkg detect
 pkg install git
 ```
+
+Se o seu shell não for bash nem zsh (fish, por exemplo), o instalador imprime
+a linha a colar no seu arquivo de configuração.
 
 !!! note "PATH"
 

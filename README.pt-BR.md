@@ -47,7 +47,8 @@ curl -fsSL https://raw.githubusercontent.com/Danil0ws/pangeia/main/install.sh | 
 
 O instalador baixa o Pangeia para `~/.local/share/pangeia`, cria o atalho
 em `~/.local/bin/pangeia` e adiciona a integração de shell no `~/.bashrc`
-e no `~/.zshrc`. Abra um shell novo e pronto:
+e no `~/.zshrc`. O `pkg` é uma função de shell: carregue no shell que já está
+aberto (`source ~/.bashrc`) ou abra um novo, e pronto:
 
 ```bash
 pkg install git curl vim

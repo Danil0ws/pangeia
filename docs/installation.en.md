@@ -13,14 +13,19 @@ What it does:
 1. Downloads Pangeia into `~/.local/share/pangeia` (or `$XDG_DATA_HOME`).
 2. Creates the `~/.local/bin/pangeia` link.
 3. Adds the shell integration to `~/.bashrc` and `~/.zshrc`, without
-   duplicating the line if you run it again.
+   duplicating the line when you run it again.
 
-Open a new shell and try it:
+`pkg` is a shell function, so it only exists once the shell *re-reads* its
+startup file. Open a new shell, or load it now:
 
 ```bash
+source ~/.bashrc        # zsh: source ~/.zshrc
 pkg detect
 pkg install git
 ```
+
+If your shell is neither bash nor zsh (fish, say), the installer prints the
+line to paste into your shell configuration instead.
 
 !!! note "PATH"
 

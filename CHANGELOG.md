@@ -10,6 +10,18 @@ release-please. Do not edit generated sections by hand.
 
 ## [Unreleased]
 
+### Fixed
+
+- The installer created `~/.bashrc`/`~/.zshrc` only when they already
+  existed, so a shell whose rc file was missing got no integration and no
+  warning. It now creates the rc of the shell in use (`$SHELL`) and, for
+  bash/zsh, tells you how to load it in the shell you have open
+  (`source ~/.bashrc`) — the reason `pkg: command not found` appeared right
+  after a successful install. A shell that reads neither file (fish, say)
+  gets the line to paste instead of silence.
+- Re-running the installer now reports the integration it finds instead of
+  skipping it silently.
+
 ### Added
 
 - **Command vocabulary** (`src/domain/commands.sh`): one canonical name per

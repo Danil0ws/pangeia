@@ -78,15 +78,33 @@ fetch() {
 
 wire_shell() {
     local line="[ -f \"$PANGEIA_DIR/shell/pangeia.sh\" ] && . \"$PANGEIA_DIR/shell/pangeia.sh\""
-    local rc
+    local rc shell_name
+    shell_name="$(basename "${SHELL:-bash}")"
+
     for rc in "$HOME/.bashrc" "$HOME/.zshrc"; do
-        [ -e "$rc" ] || continue
-        if grep -qF "$PANGEIA_DIR/shell/pangeia.sh" "$rc"; then
+        # The rc of the shell in use is created if missing; the other
+        # shell's rc only matters when that shell was used before.
+        if [ ! -e "$rc" ] && [ "$(basename "$rc")" != ".${shell_name}rc" ]; then
             continue
         fi
-        printf '\n# Pangeia\n%s\n' "$line" >>"$rc"
-        say "wired shell integration into $rc"
+        if grep -qF "$PANGEIA_DIR/shell/pangeia.sh" "$rc" 2>/dev/null; then
+            say "shell integration already present in $rc"
+        else
+            printf '\n# Pangeia\n%s\n' "$line" >>"$rc"
+            say "wired shell integration into $rc"
+        fi
     done
+
+    # The current shell only sees `pkg` after it re-reads its rc, so say
+    # how. A shell that reads neither file gets the line printed instead
+    # of a silent `pkg: command not found`.
+    case "$shell_name" in
+        bash | zsh) say "Load it now:  source ~/.${shell_name}rc   # or open a new shell" ;;
+        *)
+            say "note: $shell_name does not read ~/.bashrc or ~/.zshrc"
+            say "add this to your shell config: $line"
+            ;;
+    esac
 }
 
 main() {
@@ -110,9 +128,9 @@ main() {
     fi
     case ":$PATH:" in
         *":$PANGEIA_BIN_DIR:"*) ;;
-        *) say "Add $PANGEIA_BIN_DIR to your PATH to use 'pangeia' directly:" ;;
+        *) say "Add $PANGEIA_BIN_DIR to your PATH to use 'pangeia' directly." ;;
     esac
-    say "Open a new shell, then try: pkg install git"
+    say "Then try: pkg install git"
 }
 
 main "$@"

@@ -47,7 +47,8 @@ curl -fsSL https://raw.githubusercontent.com/Danil0ws/pangeia/main/install.sh | 
 
 The installer fetches Pangeia into `~/.local/share/pangeia`, links the
 binary into `~/.local/bin/pangeia` and wires the shell integration into
-`~/.bashrc` and `~/.zshrc`. Open a new shell and go:
+`~/.bashrc` and `~/.zshrc`. `pkg` is a shell function, so load it in the
+shell you already have open (`source ~/.bashrc`) or open a new one, then go:
 
 ```bash
 pkg install git curl vim
