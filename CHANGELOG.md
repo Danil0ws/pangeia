@@ -10,6 +10,16 @@ release-please. Do not edit generated sections by hand.
 
 ## [Unreleased]
 
+### Changed
+
+- `pangeia version` asks the **manager**, not Pangeia: it runs
+  `rpm-ostree --version` on Silverblue, `apt-get --version` on Debian,
+  `pacman -V` on Arch, and so on through a new `pangeia_adapter_version` in
+  every adapter. Pangeia's own version moved to `pangeia -v` / `--version`.
+- A command with no mapping prints the help and exits 1, instead of an error
+  with a "did you mean" suggestion; the edit-distance suggester it needed is
+  gone.
+
 ### Fixed
 
 - The installer created `~/.bashrc`/`~/.zshrc` only when they already

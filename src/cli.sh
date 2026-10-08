@@ -23,13 +23,17 @@ Commands:
   remove, rm, del        Remove one or more packages
   search, find           Search for a package
   update, upgrade, up    Update the system / all packages
+  version                Print the version of the detected manager
   explain, dry-run       Print the native command without running it
   detect, which          Print the detected package manager
-  version, -v            Print the version
+  -v, --version          Print Pangeia's own version
   help, -h               Print this help
 
+Every command runs the manager's own command underneath: 'pangeia version'
+is 'rpm-ostree --version' on Silverblue, 'apt-get --version' on Debian.
 Spellings are interchangeable: 'pangeia get', 'pangeia erase' and
-'pangeia lookup' resolve to the standard commands above.
+'pangeia lookup' resolve to the standard commands above. A command with no
+mapping prints this help.
 
 Environment:
   PANGEIA_MANAGER        Force a manager instead of auto-detecting
@@ -57,7 +61,7 @@ pangeia_main() {
             pangeia_usage
             return 0
             ;;
-        version | -v | --version)
+        -v | --version)
             pangeia_version
             return 0
             ;;
@@ -66,14 +70,11 @@ pangeia_main() {
     local action
     action="$(pangeia_canonical_action "$command")"
 
+    # No mapping for this word: print the help instead of guessing at a
+    # manager command.
     if ! pangeia_is_action "$action"; then
-        local hint
-        hint="$(pangeia_suggest_action "$command")"
-        if [ -n "$hint" ]; then
-            pangeia_err "unknown command '$command'; did you mean '$hint'?"
-        else
-            pangeia_err "unknown command '$command'; try 'pangeia help'"
-        fi
+        pangeia_err "unknown command '$command'"
+        pangeia_usage
         return 1
     fi
 

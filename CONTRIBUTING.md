@@ -30,7 +30,7 @@ Linux, on macOS, and in the GitHub Actions matrix.
 | Path | Responsibility |
 |---|---|
 | `src/domain/` | Pure decisions: manager detection, package-name mapping and the command vocabulary |
-| `src/adapters/` | One file per package manager, four functions each |
+| `src/adapters/` | One file per package manager, five functions each |
 | `src/application/` | Use cases that orchestrate domain + adapters |
 | `src/cli.sh` | Argument parsing and user-facing output |
 | `bin/pangeia` | Entry point that wires the layers together |
@@ -41,8 +41,9 @@ Linux, on macOS, and in the GitHub Actions matrix.
 
 1. Create `src/adapters/<name>.sh`.
 2. Implement `pangeia_adapter_install`, `pangeia_adapter_remove`,
-   `pangeia_adapter_search` and `pangeia_adapter_update`. Use `pangeia_run`
-   so dry-run mode and privilege escalation keep working.
+   `pangeia_adapter_search`, `pangeia_adapter_update` and
+   `pangeia_adapter_version`. Use `pangeia_run` so dry-run mode and privilege
+   escalation keep working, and `pangeia_query` for read-only commands.
 3. Return the id from `pangeia_detect_manager` in `src/domain/detect.sh`,
    **in the right order** (atomic systems first).
 4. Add cases to `tests/test_adapters.sh` and `tests/test_detect.sh`.

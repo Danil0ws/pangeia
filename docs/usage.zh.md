@@ -9,7 +9,8 @@ pkg search ripgrep           # 在仓库中搜索
 pkg update                   # 更新系统 / 全部软件包
 pkg explain install ripgrep  # 只显示原生命令，不执行
 pkg detect                   # 显示检测到的管理器
-pkg version                  # 显示版本
+pkg version                  # 显示检测到的管理器的版本（rpm-ostree --version）
+pkg -v                       # 显示 Pangeia 自身的版本
 pkg help                     # 帮助
 ```
 
@@ -27,8 +28,10 @@ pkg help                     # 帮助
 | `detect` | `which` |
 
 `pkg explain <命令>` 只打印本机将执行的原生命令，不执行任何操作——等同于
-`PANGEIA_DRY_RUN=1`。命令写错时会给出提示（`pkg verison` →
-*did you mean 'version'?*），而不是猜测后执行。
+`PANGEIA_DRY_RUN=1`。每条命令底层都运行管理器自己的命令，`version` 也是：
+`pkg version` 在 Silverblue 上是 `rpm-ostree --version`，在 Debian 上是
+`apt-get --version`；Pangeia 自身的版本用 `pkg --version`。没有映射的命令会
+打印这份帮助，而不会去猜测。
 
 shell 集成还提供葡萄牙语别名：
 

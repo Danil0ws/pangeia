@@ -17,3 +17,8 @@ pangeia_adapter_remove() {
 pangeia_adapter_search() {
     pangeia_query emerge --search "$@"
 }
+
+# The manager's own version. `pangeia --version` prints Pangeia's.
+pangeia_adapter_version() {
+    pangeia_query emerge --version
+}

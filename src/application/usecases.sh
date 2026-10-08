@@ -98,6 +98,9 @@ pangeia_use() {
         update)
             pangeia_adapter_update
             ;;
+        version)
+            pangeia_adapter_version
+            ;;
         *)
             pangeia_err "unknown action: $action"
             return 1

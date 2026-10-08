@@ -43,6 +43,12 @@ check brew update "brew update"
 # Search is read-only but still honours the dry run, so `pangeia explain`
 # can show it instead of running it.
 check apt search "apt-cache search git" git
+check apt version "apt-get --version"
+check dnf version "--version"
+check rpm-ostree version "rpm-ostree --version"
+check brew version "brew --version"
+check nix version "nix-env --version"
+check pacman version "pacman -V"
 check pacman search "pacman -Ss git" git
 check dnf search "search git" git
 check nix search "nix-env -qaP git" git

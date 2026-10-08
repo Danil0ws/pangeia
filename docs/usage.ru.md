@@ -9,7 +9,8 @@ pkg search ripgrep           # искать в репозиториях
 pkg update                   # обновить систему / все пакеты
 pkg explain install ripgrep  # показать родную команду, ничего не выполняя
 pkg detect                   # показать определённый менеджер
-pkg version                  # показать версию
+pkg version                  # версия определённого менеджера (rpm-ostree --version)
+pkg -v                       # версия самого Pangeia
 pkg help                     # справка
 ```
 
@@ -27,8 +28,11 @@ pkg help                     # справка
 | `detect` | `which` |
 
 `pkg explain <команда>` печатает родную команду для вашей системы и ничего не
-выполняет — то же самое, что `PANGEIA_DRY_RUN=1`. Опечатка не выполняется, а
-сопровождается подсказкой (`pkg verison` → *did you mean 'version'?*).
+выполняет — то же самое, что `PANGEIA_DRY_RUN=1`. Любая команда выполняет под
+собой команду менеджера, включая `version`: `pkg version` — это
+`rpm-ostree --version` в Silverblue и `apt-get --version` в Debian, а версия
+самого Pangeia — это `pkg --version`. Команда без сопоставления печатает эту
+справку, а не пытается угадать.
 
 Интеграция с оболочкой также добавляет португальские псевдонимы:
 

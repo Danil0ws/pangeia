@@ -19,3 +19,8 @@ pangeia_adapter_search() {
     # transactional-update delegates to zypper for package metadata.
     pangeia_query zypper search "$@"
 }
+
+# The manager's own version. `pangeia --version` prints Pangeia's.
+pangeia_adapter_version() {
+    pangeia_query transactional-update --version
+}

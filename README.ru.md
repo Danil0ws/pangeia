@@ -71,7 +71,8 @@ pkg search ripgrep        # найти
 pkg update                # обновить систему
 pkg explain install htop  # показать родную команду, ничего не выполняя
 pkg detect                # показать определённый менеджер
-pkg version               # показать версию
+pkg version               # версия определённого менеджера (rpm-ostree --version)
+pkg --version             # версия самого Pangeia
 ```
 
 Команды — стандартные слова с синонимами (`get`, `erase`, `lookup`, `rm`,

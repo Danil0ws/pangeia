@@ -9,7 +9,8 @@ pkg search ripgrep           # search the repositories
 pkg update                   # update the system / all packages
 pkg explain install ripgrep  # print the native command, run nothing
 pkg detect                   # print the detected manager
-pkg version                  # print the version
+pkg version                  # version of the detected manager (rpm-ostree --version)
+pkg -v                       # Pangeia's own version
 pkg help                     # help
 ```
 
@@ -28,8 +29,10 @@ way. You keep typing the same one: `remove` is `apt-get remove -y` on Debian,
 
 `pkg explain <command>` prints the native command for this system without
 running anything — the same thing as `PANGEIA_DRY_RUN=1`, with a better name.
-A mistyped command is reported with a suggestion (`pkg verison` → *did you
-mean 'version'?*) instead of being guessed at.
+Every command runs the manager's own underneath, `version` included:
+`pkg version` is `rpm-ostree --version` on Silverblue and `apt-get --version`
+on Debian, while `pkg --version` is Pangeia's own. A command with no mapping
+prints this help instead of guessing.
 
 The shell integration also ships Portuguese aliases:
 

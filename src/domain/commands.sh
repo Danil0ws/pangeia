@@ -18,7 +18,7 @@ search:search find s lookup
 update:update upgrade up refresh
 explain:explain dry-run
 detect:detect which
-version:version -v --version
+version:version
 help:help -h --help
 EOF
 }
@@ -67,60 +67,4 @@ pangeia_canonical_action() {
         done
     done < <(_pangeia_action_table)
     printf '%s\n' "$1"
-}
-
-# Levenshtein distance between two words, two rows at a time.
-# ponytail: O(len(a)*len(b)) over words this short is free.
-pangeia_edit_distance() {
-    local a="$1" b="$2" i j cost up left diag min
-    local la=${#a} lb=${#b}
-    local -a prev cur
-
-    for ((j = 0; j <= lb; j++)); do
-        prev[j]=$j
-    done
-
-    for ((i = 1; i <= la; i++)); do
-        cur[0]=$i
-        for ((j = 1; j <= lb; j++)); do
-            if [ "${a:i-1:1}" = "${b:j-1:1}" ]; then
-                cost=0
-            else
-                cost=1
-            fi
-            up=$((prev[j] + 1))
-            left=$((cur[j - 1] + 1))
-            diag=$((prev[j - 1] + cost))
-            min=$up
-            [ "$left" -lt "$min" ] && min=$left
-            [ "$diag" -lt "$min" ] && min=$diag
-            cur[j]=$min
-        done
-        prev=("${cur[@]}")
-    done
-
-    printf '%s\n' "${prev[lb]}"
-}
-
-# The action a mistyped command was probably meant to be; empty when
-# nothing is close enough to guess.
-pangeia_suggest_action() {
-    local word="$1" line spelling action best="" best_d=99 d
-    local word_len=${#word}
-
-    while IFS= read -r line; do
-        action="${line%%:*}"
-        for spelling in ${line#*:}; do
-            d="$(pangeia_edit_distance "$word" "$spelling")"
-            if [ "$d" -lt "$best_d" ]; then
-                best_d="$d"
-                best="$action"
-            fi
-        done
-    done < <(_pangeia_action_table)
-
-    # One or two keystrokes off, and not the whole word.
-    if [ -n "$best" ] && [ "$best_d" -le 2 ] && [ "$best_d" -lt "$word_len" ]; then
-        printf '%s\n' "$best"
-    fi
 }

@@ -29,19 +29,22 @@ assert_eq frobnicate "$(pangeia_canonical_action frobnicate)" "unknown passthrou
 pangeia_is_action frobnicate
 assert_eq 1 "$?" "unknown is not an action"
 
-# Near misses get a suggestion; noise gets none.
-assert_eq version "$(pangeia_suggest_action verison)" "suggest version"
-assert_eq install "$(pangeia_suggest_action instal)" "suggest install"
-assert_eq remove "$(pangeia_suggest_action rmm)" "suggest remove"
-assert_eq "" "$(pangeia_suggest_action frobnicate)" "no suggestion for noise"
-assert_eq "" "$(pangeia_suggest_action x)" "no suggestion for a single letter"
-
-# A typo is reported, not guessed at, and exits non-zero.
+# A command with no mapping prints the help, and fails.
 out="$(PANGEIA_MANAGER=apt pangeia_main verison 2>&1)"
-assert_contains "$out" "unknown command 'verison'" "typo is reported"
-assert_contains "$out" "did you mean 'version'" "typo gets a hint"
+assert_contains "$out" "unknown command 'verison'" "unmapped command is reported"
+assert_contains "$out" "Usage:" "unmapped command prints the help"
 PANGEIA_MANAGER=apt pangeia_main verison >/dev/null 2>&1
-assert_eq 1 "$?" "typo exits 1"
+assert_eq 1 "$?" "unmapped command exits 1"
+
+# `version` asks the manager, and asks it in its own syntax.
+out="$(PANGEIA_MANAGER=rpm-ostree PANGEIA_DRY_RUN=1 pangeia_main version 2>/dev/null)"
+assert_contains "$out" "rpm-ostree --version" "version on rpm-ostree"
+out="$(PANGEIA_MANAGER=pacman PANGEIA_DRY_RUN=1 pangeia_main version 2>/dev/null)"
+assert_contains "$out" "pacman -V" "version on pacman"
+out="$(PANGEIA_MANAGER=dnf PANGEIA_DRY_RUN=1 pangeia_main version 2>/dev/null)"
+assert_contains "$out" "--version" "version on dnf"
+out="$(PANGEIA_MANAGER=apt pangeia_main explain version 2>/dev/null)"
+assert_contains "$out" "apt-get --version" "explain version"
 
 # explain prints the native command of the detected manager, without
 # running it, and accepts the same spellings as the real command.

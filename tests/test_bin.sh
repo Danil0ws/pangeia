@@ -11,7 +11,10 @@ BIN="$PANGEIA_ROOT/bin/pangeia"
 
 # --- detect and version -------------------------------------------------
 assert_eq "ok" "$([ -n "$("$BIN" detect)" ] && echo ok)" "detect prints a manager"
-assert_eq "$(cat "$PANGEIA_ROOT/VERSION")" "$("$BIN" version)" "version matches VERSION"
+assert_eq "$(cat "$PANGEIA_ROOT/VERSION")" "$("$BIN" --version)" "--version matches VERSION"
+
+out="$(PANGEIA_MANAGER=apt PANGEIA_DRY_RUN=1 "$BIN" version 2>/dev/null)"
+assert_contains "$out" "apt-get --version" "version asks the manager"
 
 # --- an install through the real entry point, in dry-run ----------------
 out="$(PANGEIA_MANAGER=apt PANGEIA_DRY_RUN=1 "$BIN" install git python-pip 2>/dev/null)"

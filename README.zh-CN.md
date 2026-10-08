@@ -69,7 +69,8 @@ pkg search ripgrep        # 搜索
 pkg update                # 更新系统
 pkg explain install htop  # 只显示原生命令，不执行
 pkg detect                # 显示检测到的管理器
-pkg version               # 显示版本
+pkg version               # 显示检测到的管理器的版本（rpm-ostree --version）
+pkg --version             # 显示 Pangeia 自身的版本
 ```
 
 命令是统一的标准词，各有同义词（`get`、`erase`、`lookup`、`rm`、`up`……），

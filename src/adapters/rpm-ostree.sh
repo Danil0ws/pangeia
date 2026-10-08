@@ -24,3 +24,8 @@ pangeia_adapter_search() {
         pangeia_warn "no search backend; try: flatpak search $*"
     fi
 }
+
+# The manager's own version. `pangeia --version` prints Pangeia's.
+pangeia_adapter_version() {
+    pangeia_query rpm-ostree --version
+}
