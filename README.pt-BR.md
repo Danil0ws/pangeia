@@ -69,9 +69,17 @@ pkg install git curl      # instala (também: pangeia install / instalar)
 pkg remove firefox        # remove (remover)
 pkg search ripgrep        # busca (buscar)
 pkg update                # atualiza o sistema (atualizar)
+pkg explain install htop  # mostra o comando nativo, sem executar
 pkg detect                # mostra o gerenciador detectado
 pkg version               # versão
 ```
+
+Os comandos são palavras padrão com sinônimos (`get`, `erase`, `lookup`, `rm`,
+`up`...) e cada um é traduzido para a sintaxe do gerenciador por baixo —
+`remove` é `apt-get remove -y` no Debian, `uninstall` no rpm-ostree e `del` no
+Alpine. `pkg explain <comando>` mostra o que rodaria nesta máquina, e um
+comando digitado errado recebe uma sugestão em vez de rodar outra coisa. O
+vocabulário todo vive em `src/domain/commands.sh`.
 
 Variáveis de ambiente:
 
@@ -93,7 +101,7 @@ edite `src/domain/mapping.sh`.
 Arquitetura limpa, quatro camadas, cada uma com uma responsabilidade:
 
 ```
-src/domain/       decisões puras (detecção, tradução de nomes)
+src/domain/       decisões puras (detecção, tradução de nomes, comandos)
 src/adapters/     um arquivo por gerenciador de pacotes
 src/application/  casos de uso (install, remove, search, update)
 src/cli.sh        apresentação (argv, ajuda, saída)

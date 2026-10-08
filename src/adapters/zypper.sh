@@ -14,5 +14,5 @@ pangeia_adapter_remove() {
 }
 
 pangeia_adapter_search() {
-    zypper search "$@"
+    pangeia_query zypper search "$@"
 }

@@ -16,5 +16,5 @@ pangeia_adapter_remove() {
 }
 
 pangeia_adapter_search() {
-    brew search "$@"
+    pangeia_query brew search "$@"
 }

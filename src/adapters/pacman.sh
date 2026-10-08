@@ -14,5 +14,5 @@ pangeia_adapter_remove() {
 }
 
 pangeia_adapter_search() {
-    pacman -Ss "$@"
+    pangeia_query pacman -Ss "$@"
 }

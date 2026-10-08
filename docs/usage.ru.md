@@ -7,14 +7,28 @@ pkg install git curl vim     # установить один или нескол
 pkg remove firefox           # удалить
 pkg search ripgrep           # искать в репозиториях
 pkg update                   # обновить систему / все пакеты
+pkg explain install ripgrep  # показать родную команду, ничего не выполняя
 pkg detect                   # показать определённый менеджер
 pkg version                  # показать версию
 pkg help                     # справка
 ```
 
-У каждой команды есть псевдоним. `install` — это также `i` и `add`;
-`remove` — также `rm`, `del`, `uninstall`; `search` — также `find` и `s`;
-`update` — также `upgrade` и `up`.
+Команды — стандартные слова, а под ними у каждого менеджера своя запись.
+Вводите вы одно и то же: `remove` — это `apt-get remove -y` в Debian,
+`uninstall` в rpm-ostree и `del` в Alpine.
+
+| Команда | Также принимает |
+|---|---|
+| `install` | `i`, `add`, `get` |
+| `remove` | `rm`, `del`, `delete`, `uninstall`, `erase` |
+| `search` | `find`, `s`, `lookup` |
+| `update` | `upgrade`, `up`, `refresh` |
+| `explain` | `dry-run` |
+| `detect` | `which` |
+
+`pkg explain <команда>` печатает родную команду для вашей системы и ничего не
+выполняет — то же самое, что `PANGEIA_DRY_RUN=1`. Опечатка не выполняется, а
+сопровождается подсказкой (`pkg verison` → *did you mean 'version'?*).
 
 Интеграция с оболочкой также добавляет португальские псевдонимы:
 

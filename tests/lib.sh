@@ -21,6 +21,8 @@ pangeia_load_all() {
     # shellcheck source=/dev/null
     . "$PANGEIA_SRC/domain/mapping.sh"
     # shellcheck source=/dev/null
+    . "$PANGEIA_SRC/domain/commands.sh"
+    # shellcheck source=/dev/null
     . "$PANGEIA_SRC/application/usecases.sh"
     # shellcheck source=/dev/null
     . "$PANGEIA_SRC/cli.sh"

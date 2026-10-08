@@ -7,14 +7,29 @@ pkg install git curl vim     # install one or more packages
 pkg remove firefox           # remove
 pkg search ripgrep           # search the repositories
 pkg update                   # update the system / all packages
+pkg explain install ripgrep  # print the native command, run nothing
 pkg detect                   # print the detected manager
 pkg version                  # print the version
 pkg help                     # help
 ```
 
-Every command has an alias. `install` is also `i` and `add`; `remove` is also
-`rm`, `del` and `uninstall`; `search` is also `find` and `s`; `update` is also
-`upgrade` and `up`.
+The commands are standard words; underneath, every manager spells them its own
+way. You keep typing the same one: `remove` is `apt-get remove -y` on Debian,
+`uninstall` on rpm-ostree and `del` on Alpine.
+
+| Command | Also accepts |
+|---|---|
+| `install` | `i`, `add`, `get` |
+| `remove` | `rm`, `del`, `delete`, `uninstall`, `erase` |
+| `search` | `find`, `s`, `lookup` |
+| `update` | `upgrade`, `up`, `refresh` |
+| `explain` | `dry-run` |
+| `detect` | `which` |
+
+`pkg explain <command>` prints the native command for this system without
+running anything — the same thing as `PANGEIA_DRY_RUN=1`, with a better name.
+A mistyped command is reported with a suggestion (`pkg verison` → *did you
+mean 'version'?*) instead of being guessed at.
 
 The shell integration also ships Portuguese aliases:
 

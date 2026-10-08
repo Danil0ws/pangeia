@@ -69,9 +69,17 @@ pkg install git curl      # install
 pkg remove firefox        # remove
 pkg search ripgrep        # search
 pkg update                # update the system
+pkg explain install htop  # print the native command, run nothing
 pkg detect                # print the detected manager
 pkg version               # print the version
 ```
+
+Commands are standard words with synonyms (`get`, `erase`, `lookup`, `rm`,
+`up`, ...), and each one maps onto the syntax of the manager underneath —
+`remove` is `apt-get remove -y` on Debian, `uninstall` on rpm-ostree, `del` on
+Alpine. `pkg explain <command>` prints what would actually run on this machine,
+and a mistyped command gets a suggestion instead of running the wrong thing.
+The whole vocabulary lives in `src/domain/commands.sh`.
 
 Environment variables:
 
@@ -93,7 +101,7 @@ Anything else passes through untouched. To add one, edit
 Clean architecture, four layers, one responsibility each:
 
 ```
-src/domain/       pure decisions (detection, name mapping)
+src/domain/       pure decisions (detection, name mapping, commands)
 src/adapters/     one file per package manager
 src/application/  use cases (install, remove, search, update)
 src/cli.sh        presentation (argv, help, output)

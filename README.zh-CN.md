@@ -67,9 +67,16 @@ pkg install git curl      # 安装
 pkg remove firefox        # 卸载
 pkg search ripgrep        # 搜索
 pkg update                # 更新系统
+pkg explain install htop  # 只显示原生命令，不执行
 pkg detect                # 显示检测到的管理器
 pkg version               # 显示版本
 ```
+
+命令是统一的标准词，各有同义词（`get`、`erase`、`lookup`、`rm`、`up`……），
+并会翻译成底层管理器的写法：`remove` 在 Debian 上是 `apt-get remove -y`，
+在 rpm-ostree 上是 `uninstall`，在 Alpine 上是 `del`。
+`pkg explain <命令>` 显示本机将执行的命令；命令写错时会给出提示，而不会执行
+错误的东西。全部词表位于 `src/domain/commands.sh`。
 
 环境变量：
 

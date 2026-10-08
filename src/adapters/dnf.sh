@@ -23,5 +23,5 @@ pangeia_adapter_remove() {
 }
 
 pangeia_adapter_search() {
-    "$(pangeia_dnf_cli)" search "$@"
+    pangeia_query "$(pangeia_dnf_cli)" search "$@"
 }

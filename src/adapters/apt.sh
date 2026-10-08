@@ -16,5 +16,5 @@ pangeia_adapter_remove() {
 }
 
 pangeia_adapter_search() {
-    apt-cache search "$@"
+    pangeia_query apt-cache search "$@"
 }

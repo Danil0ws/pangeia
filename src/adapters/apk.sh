@@ -15,5 +15,5 @@ pangeia_adapter_remove() {
 }
 
 pangeia_adapter_search() {
-    apk search "$@"
+    pangeia_query apk search "$@"
 }

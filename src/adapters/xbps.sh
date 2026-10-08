@@ -14,5 +14,5 @@ pangeia_adapter_remove() {
 }
 
 pangeia_adapter_search() {
-    xbps-query -Rs "$@"
+    pangeia_query xbps-query -Rs "$@"
 }

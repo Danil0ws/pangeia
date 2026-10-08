@@ -40,6 +40,13 @@ check apt update "apt-get update"
 check pacman update "pacman -Syu"
 check brew update "brew update"
 
+# Search is read-only but still honours the dry run, so `pangeia explain`
+# can show it instead of running it.
+check apt search "apt-cache search git" git
+check pacman search "pacman -Ss git" git
+check dnf search "search git" git
+check nix search "nix-env -qaP git" git
+
 # Name mapping is applied before the command is built.
 out="$(PANGEIA_MANAGER=apt pangeia_use install python-pip)"
 assert_contains "$out" "python3-pip" "apt maps python-pip"

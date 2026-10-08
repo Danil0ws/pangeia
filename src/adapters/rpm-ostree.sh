@@ -19,7 +19,7 @@ pangeia_adapter_search() {
     # rpm-ostree has no search; the base image metadata is queryable
     # through dnf, and apps usually live in Flatpak instead.
     if command -v dnf >/dev/null 2>&1 || command -v yum >/dev/null 2>&1; then
-        "$(pangeia_dnf_cli)" search "$@"
+        pangeia_query "$(pangeia_dnf_cli)" search "$@"
     else
         pangeia_warn "no search backend; try: flatpak search $*"
     fi

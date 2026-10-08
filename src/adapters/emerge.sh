@@ -15,5 +15,5 @@ pangeia_adapter_remove() {
 }
 
 pangeia_adapter_search() {
-    emerge --search "$@"
+    pangeia_query emerge --search "$@"
 }

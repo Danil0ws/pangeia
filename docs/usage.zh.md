@@ -7,14 +7,28 @@ pkg install git curl vim     # 安装一个或多个软件包
 pkg remove firefox           # 卸载
 pkg search ripgrep           # 在仓库中搜索
 pkg update                   # 更新系统 / 全部软件包
+pkg explain install ripgrep  # 只显示原生命令，不执行
 pkg detect                   # 显示检测到的管理器
 pkg version                  # 显示版本
 pkg help                     # 帮助
 ```
 
-每个命令都有别名。`install` 也可以写作 `i`、`add`；`remove` 也可以写作
-`rm`、`del`、`uninstall`；`search` 也可以写作 `find`、`s`；`update` 也可以
-写作 `upgrade`、`up`。
+命令是统一的叫法，底层则由各个管理器自行实现。无论用哪种系统，你输入的
+都是同一个词：`remove` 在 Debian 上是 `apt-get remove -y`，在 rpm-ostree 上
+是 `uninstall`，在 Alpine 上是 `del`。
+
+| 命令 | 也可以写作 |
+|---|---|
+| `install` | `i`、`add`、`get` |
+| `remove` | `rm`、`del`、`delete`、`uninstall`、`erase` |
+| `search` | `find`、`s`、`lookup` |
+| `update` | `upgrade`、`up`、`refresh` |
+| `explain` | `dry-run` |
+| `detect` | `which` |
+
+`pkg explain <命令>` 只打印本机将执行的原生命令，不执行任何操作——等同于
+`PANGEIA_DRY_RUN=1`。命令写错时会给出提示（`pkg verison` →
+*did you mean 'version'?*），而不是猜测后执行。
 
 shell 集成还提供葡萄牙语别名：
 

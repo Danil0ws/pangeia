@@ -45,6 +45,20 @@ pangeia_fallback_flatpak() {
     return $rc
 }
 
+# Show the native command for an action without running it: the same
+# dispatch as pangeia_use, with the dry run forced on for the call.
+pangeia_explain() {
+    local action
+    action="$(pangeia_canonical_action "$1")"
+    shift
+
+    local saved_dry_run="${PANGEIA_DRY_RUN:-0}" rc=0
+    PANGEIA_DRY_RUN=1
+    pangeia_use "$action" "$@" || rc=$?
+    PANGEIA_DRY_RUN="$saved_dry_run"
+    return $rc
+}
+
 # Run one use case against the detected (or forced) manager.
 pangeia_use() {
     local action="$1"

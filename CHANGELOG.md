@@ -8,6 +8,28 @@ Entries below the first release are generated automatically from
 [Conventional Commits](https://www.conventionalcommits.org/) by
 release-please. Do not edit generated sections by hand.
 
+## [Unreleased]
+
+### Added
+
+- **Command vocabulary** (`src/domain/commands.sh`): one canonical name per
+  intent and every accepted spelling mapped onto it (`install`/`i`/`add`/`get`,
+  `remove`/`rm`/`del`/`delete`/`uninstall`/`erase`,
+  `search`/`find`/`s`/`lookup`, `update`/`upgrade`/`up`/`refresh`), so the same
+  word works on every manager.
+- **`pangeia explain <command>`** (alias `dry-run`): prints the native command
+  for the detected manager without running it — `pangeia explain remove
+  firefox` shows `apt-get remove -y firefox` on Debian and
+  `rpm-ostree uninstall firefox` on Silverblue.
+- A mistyped command is reported with a suggestion (`pangeia verison` →
+  `did you mean 'version'?`) instead of being passed to the manager.
+
+### Fixed
+
+- `search` now honours `PANGEIA_DRY_RUN=1` (and `pangeia explain`) like the
+  other actions, through the new read-only helper `pangeia_query`, which never
+  escalates privileges.
+
 ## [0.1.0] - 2026-10-07
 
 ### Added

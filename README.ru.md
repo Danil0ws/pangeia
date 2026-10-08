@@ -69,9 +69,17 @@ pkg install git curl      # установить
 pkg remove firefox        # удалить
 pkg search ripgrep        # найти
 pkg update                # обновить систему
+pkg explain install htop  # показать родную команду, ничего не выполняя
 pkg detect                # показать определённый менеджер
 pkg version               # показать версию
 ```
+
+Команды — стандартные слова с синонимами (`get`, `erase`, `lookup`, `rm`,
+`up`…) и каждая переводится в синтаксис нижележащего менеджера: `remove` —
+это `apt-get remove -y` в Debian, `uninstall` в rpm-ostree, `del` в Alpine.
+`pkg explain <команда>` покажет, что именно выполнилось бы на этой машине, а
+опечатка сопровождается подсказкой. Весь словарь лежит в
+`src/domain/commands.sh`.
 
 Переменные окружения:
 

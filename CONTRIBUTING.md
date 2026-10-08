@@ -29,7 +29,7 @@ Linux, on macOS, and in the GitHub Actions matrix.
 
 | Path | Responsibility |
 |---|---|
-| `src/domain/` | Pure decisions: manager detection and package-name mapping |
+| `src/domain/` | Pure decisions: manager detection, package-name mapping and the command vocabulary |
 | `src/adapters/` | One file per package manager, four functions each |
 | `src/application/` | Use cases that orchestrate domain + adapters |
 | `src/cli.sh` | Argument parsing and user-facing output |
@@ -52,12 +52,19 @@ Linux, on macOS, and in the GitHub Actions matrix.
 Add one arm to `pangeia_package_name` in `src/domain/mapping.sh` and a case
 to `tests/test_mapping.sh`.
 
+### Adding a command spelling
+
+Add the word to the right line of `_pangeia_action_table` in
+`src/domain/commands.sh`. Normalization, the typo suggestions and
+`tests/test_commands.sh` all read that table, so nothing else changes.
+
 ## Style
 
 - POSIX-friendly bash, compatible with bash 3.2 (macOS).
 - `shellcheck` clean, `shfmt -i 4 -ci` formatted (the same flags CI uses —
   run `make fmt` and `make lint` before pushing).
-- Quote expansions; use `pangeia_run` instead of calling tools directly.
+- Quote expansions; use `pangeia_run` (or `pangeia_query` for read-only
+  commands) instead of calling tools directly, so dry-run keeps working.
 - Prefer deletion over addition. If a feature is not needed today, it does
   not go in.
 

@@ -17,5 +17,5 @@ pangeia_adapter_remove() {
 
 pangeia_adapter_search() {
     # transactional-update delegates to zypper for package metadata.
-    zypper search "$@"
+    pangeia_query zypper search "$@"
 }

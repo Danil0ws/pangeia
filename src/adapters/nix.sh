@@ -22,5 +22,5 @@ pangeia_adapter_remove() {
 }
 
 pangeia_adapter_search() {
-    nix-env -qaP "$@"
+    pangeia_query nix-env -qaP "$@"
 }

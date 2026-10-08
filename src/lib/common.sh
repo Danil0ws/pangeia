@@ -52,3 +52,13 @@ pangeia_run() {
     # shellcheck disable=SC2086  # intentional word splitting of $PANGEIA_SUDO
     $PANGEIA_SUDO "$@"
 }
+
+# Same contract as pangeia_run, for read-only commands (searches):
+# honours PANGEIA_DRY_RUN but never escalates.
+pangeia_query() {
+    if [ "${PANGEIA_DRY_RUN:-0}" = "1" ]; then
+        printf '%s\n' "$*"
+        return 0
+    fi
+    "$@"
+}

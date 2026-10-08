@@ -23,9 +23,13 @@ Commands:
   remove, rm, del        Remove one or more packages
   search, find           Search for a package
   update, upgrade, up    Update the system / all packages
+  explain, dry-run       Print the native command without running it
   detect, which          Print the detected package manager
   version, -v            Print the version
   help, -h               Print this help
+
+Spellings are interchangeable: 'pangeia get', 'pangeia erase' and
+'pangeia lookup' resolve to the standard commands above.
 
 Environment:
   PANGEIA_MANAGER        Force a manager instead of auto-detecting
@@ -36,19 +40,8 @@ Examples:
   pangeia remove firefox
   pangeia search ripgrep
   pangeia update
+  pangeia explain install ripgrep
 EOF
-}
-
-# Map a user-facing alias onto a canonical action name.
-pangeia_canonical_action() {
-    case "$1" in
-        install | i | add) echo install ;;
-        remove | rm | del | uninstall) echo remove ;;
-        search | find | s) echo search ;;
-        update | upgrade | up) echo update ;;
-        detect | which) echo detect ;;
-        *) echo "$1" ;;
-    esac
 }
 
 pangeia_main() {
@@ -73,6 +66,17 @@ pangeia_main() {
     local action
     action="$(pangeia_canonical_action "$command")"
 
+    if ! pangeia_is_action "$action"; then
+        local hint
+        hint="$(pangeia_suggest_action "$command")"
+        if [ -n "$hint" ]; then
+            pangeia_err "unknown command '$command'; did you mean '$hint'?"
+        else
+            pangeia_err "unknown command '$command'; try 'pangeia help'"
+        fi
+        return 1
+    fi
+
     if [ "$action" = "detect" ]; then
         pangeia_detect_manager
         return 0
@@ -84,6 +88,14 @@ pangeia_main() {
                 pangeia_err "'$command' needs at least one package"
                 return 1
             fi
+            ;;
+        explain)
+            if [ "$#" -eq 0 ]; then
+                pangeia_err "'$command' needs a command: pangeia explain install ripgrep"
+                return 1
+            fi
+            pangeia_explain "$@"
+            return $?
             ;;
     esac
 

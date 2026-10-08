@@ -7,14 +7,29 @@ pkg install git curl vim     # instala um ou mais pacotes
 pkg remove firefox           # remove
 pkg search ripgrep           # busca nos repositórios
 pkg update                   # atualiza o sistema / todos os pacotes
+pkg explain install ripgrep  # mostra o comando nativo, sem executar nada
 pkg detect                   # mostra o gerenciador detectado
 pkg version                  # mostra a versão
 pkg help                     # ajuda
 ```
 
-Cada comando tem um alias. `install` também é `i` e `add`; `remove` também é
-`rm`, `del` e `uninstall`; `search` também é `find` e `s`; `update` também é
-`upgrade` e `up`.
+Os comandos são palavras padrão; por baixo, cada gerenciador tem a sua. Nada
+disso muda o que você digita: `remove` é `apt-get remove -y` no Debian,
+`uninstall` no rpm-ostree e `del` no Alpine.
+
+| Comando | Também aceita |
+|---|---|
+| `install` | `i`, `add`, `get` |
+| `remove` | `rm`, `del`, `delete`, `uninstall`, `erase` |
+| `search` | `find`, `s`, `lookup` |
+| `update` | `upgrade`, `up`, `refresh` |
+| `explain` | `dry-run` |
+| `detect` | `which` |
+
+`pkg explain <comando>` imprime o comando nativo do seu sistema sem executar
+nada — é o `PANGEIA_DRY_RUN=1` com um nome melhor. Um comando digitado errado
+recebe uma sugestão (`pkg verison` → *did you mean 'version'?*) em vez de ser
+adivinhado.
 
 Em português, os aliases de shell são:
 
