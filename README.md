@@ -4,9 +4,9 @@
 
 # Pangeia
 
-**Um comando para instalar qualquer pacote em qualquer Linux.**
+**One command to install any package on any Linux distribution.**
 
-[English](README.en.md) · [简体中文](README.zh-CN.md) · [Русский](README.ru.md)
+[Português](README.pt-BR.md) · [简体中文](README.zh-CN.md) · [Русский](README.ru.md)
 
 [![CI](https://github.com/Danil0ws/pangeia/actions/workflows/ci.yml/badge.svg)](https://github.com/Danil0ws/pangeia/actions/workflows/ci.yml)
 [![Docs](https://img.shields.io/badge/docs-danil0ws.github.io-blue)](https://danil0ws.github.io/pangeia/)
@@ -14,102 +14,102 @@
 
 </div>
 
-Pangeia detecta o gerenciador de pacotes do seu sistema e usa o comando
-certo. Você escreve `pkg install git` e ele roda `apt-get install -y git`
-no Debian, `pacman -S --needed git` no Arch, `apk add git` no Alpine, e
-assim por diante — sem decorar nada.
+Pangeia detects your system's package manager and uses the right command.
+You type `pkg install git` and it runs `apt-get install -y git` on Debian,
+`pacman -S --needed git` on Arch, `apk add git` on Alpine, and so on —
+nothing to memorise.
 
-## Gerenciadores suportados
+## Supported managers
 
-| Gerenciador | Distribuições |
+| Manager | Distributions |
 |---|---|
 | `apt` | Debian, Ubuntu, Mint, Pop!\_OS, Zorin |
 | `dnf` / `yum` | Fedora, RHEL, CentOS, Rocky, Alma |
 | `pacman` | Arch, Manjaro, EndeavourOS, Garuda |
-| `zypper` | openSUSE Leap e Tumbleweed |
+| `zypper` | openSUSE Leap and Tumbleweed |
 | `apk` | Alpine |
 | `xbps` | Void Linux |
 | `emerge` | Gentoo |
 | `rpm-ostree` | Fedora Silverblue, Kinoite, Bazzite |
 | `transactional-update` | openSUSE MicroOS, Aeon, Kalpa |
-| `nix` | NixOS e usuários do Nix |
-| `brew` | Homebrew (Linux e macOS) |
+| `nix` | NixOS and Nix users |
+| `brew` | Homebrew (Linux and macOS) |
 
-Se o pacote não existir no gerenciador nativo, o Pangeia tenta o
-**Flatpak** antes de desistir.
+If a package is missing from the native manager, Pangeia falls back to
+**Flatpak** before giving up.
 
-## Instalação
+## Installation
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Danil0ws/pangeia/main/install.sh | bash
 ```
 
-O instalador baixa o Pangeia para `~/.local/share/pangeia`, cria o atalho
-em `~/.local/bin/pangeia` e adiciona a integração de shell no `~/.bashrc`
-e no `~/.zshrc`. Abra um shell novo e pronto:
+The installer fetches Pangeia into `~/.local/share/pangeia`, links the
+binary into `~/.local/bin/pangeia` and wires the shell integration into
+`~/.bashrc` and `~/.zshrc`. Open a new shell and go:
 
 ```bash
 pkg install git curl vim
 ```
 
-Prefere clonar? `git clone https://github.com/Danil0ws/pangeia && cd pangeia && ./install.sh`
+Prefer cloning? `git clone https://github.com/Danil0ws/pangeia && cd pangeia && ./install.sh`
 
-## Uso
+## Usage
 
 ```bash
-pkg install git curl      # instala (também: pangeia install / instalar)
-pkg remove firefox        # remove (remover)
-pkg search ripgrep        # busca (buscar)
-pkg update                # atualiza o sistema (atualizar)
-pkg detect                # mostra o gerenciador detectado
-pkg version               # versão
+pkg install git curl      # install
+pkg remove firefox        # remove
+pkg search ripgrep        # search
+pkg update                # update the system
+pkg detect                # print the detected manager
+pkg version               # print the version
 ```
 
-Variáveis de ambiente:
+Environment variables:
 
-| Variável | Efeito |
+| Variable | Effect |
 |---|---|
-| `PANGEIA_MANAGER` | Força um gerenciador em vez de detectar |
-| `PANGEIA_DRY_RUN=1` | Só imprime os comandos, não executa |
-| `PANGEIA_OSTREE_MARKER` | Caminho do marcador de sistema imutável (testes) |
+| `PANGEIA_MANAGER` | Force a manager instead of auto-detecting |
+| `PANGEIA_DRY_RUN=1` | Print the commands instead of running them |
+| `PANGEIA_OSTREE_MARKER` | Immutable-system marker path (tests) |
 
-## Nomes de pacotes
+## Package names
 
-Alguns pacotes têm nomes diferentes em cada distribuição. O Pangeia
-traduz os casos conhecidos (`python-pip`, `apache`, `openssh`,
-`build-tools`). Qualquer outro nome passa direto. Para adicionar um novo,
-edite `src/domain/mapping.sh`.
+Some packages are named differently per distribution. Pangeia translates
+the known cases (`python-pip`, `apache`, `openssh`, `build-tools`).
+Anything else passes through untouched. To add one, edit
+`src/domain/mapping.sh`.
 
-## Arquitetura
+## Architecture
 
-Arquitetura limpa, quatro camadas, cada uma com uma responsabilidade:
+Clean architecture, four layers, one responsibility each:
 
 ```
-src/domain/       decisões puras (detecção, tradução de nomes)
-src/adapters/     um arquivo por gerenciador de pacotes
-src/application/  casos de uso (install, remove, search, update)
-src/cli.sh        apresentação (argv, ajuda, saída)
+src/domain/       pure decisions (detection, name mapping)
+src/adapters/     one file per package manager
+src/application/  use cases (install, remove, search, update)
+src/cli.sh        presentation (argv, help, output)
 ```
 
-O núcleo não conhece comandos de shell; os adaptadores não conhecem a
-interface de linha de comando. Detalhes em [docs/](docs/) e na
-[documentação publicada](https://danil0ws.github.io/pangeia/).
+The core never knows shell commands; the adapters never know the CLI.
+Details in [docs/](docs/) and in the
+[published documentation](https://danil0ws.github.io/pangeia/).
 
-## Testes
+## Tests
 
 ```bash
 bash tests/run.sh
 ```
 
-Sem dependências: é bash puro. A detecção é testada com comandos falsos
-em um `PATH` isolado, e os adaptadores com `PANGEIA_DRY_RUN=1`.
+No dependencies: plain bash. Detection is tested with stub commands in an
+isolated `PATH`, and the adapters with `PANGEIA_DRY_RUN=1`.
 
-## Contribuindo
+## Contributing
 
-Leia o [CONTRIBUTING.md](CONTRIBUTING.md). Resumo: *fork*, branch,
-código e comentários em inglês, `bash tests/run.sh` verde, e um pull
-request. Todo o projeto é MIT — veja [LICENSE](LICENSE).
+Read [CONTRIBUTING.md](CONTRIBUTING.md). Short version: fork, branch,
+code and comments in English, `bash tests/run.sh` green, then a pull
+request. The whole project is MIT — see [LICENSE](LICENSE).
 
-## Licença
+## License
 
 MIT © Danilo Rodrigues

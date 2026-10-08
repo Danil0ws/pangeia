@@ -6,7 +6,7 @@
 
 **一条命令，在任意 Linux 发行版上安装任意软件包。**
 
-[Português](README.md) · [English](README.en.md) · [Русский](README.ru.md)
+[Português](README.pt-BR.md) · [English](README.md) · [Русский](README.ru.md)
 
 [![CI](https://github.com/Danil0ws/pangeia/actions/workflows/ci.yml/badge.svg)](https://github.com/Danil0ws/pangeia/actions/workflows/ci.yml)
 [![Docs](https://img.shields.io/badge/docs-danil0ws.github.io-blue)](https://danil0ws.github.io/pangeia/)

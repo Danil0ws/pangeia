@@ -11,7 +11,7 @@ check() {
     assert_file "$PANGEIA_ROOT/$1" "$1"
 }
 
-for file in README.md README.en.md README.zh-CN.md README.ru.md \
+for file in README.md README.pt-BR.md README.zh-CN.md README.ru.md \
     LICENSE CHANGELOG.md CONTRIBUTING.md CODE_OF_CONDUCT.md VERSION \
     docs/assets/logo.png; do
     check "$file"

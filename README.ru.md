@@ -6,7 +6,7 @@
 
 **Одна команда, чтобы установить любой пакет в любом дистрибутиве Linux.**
 
-[Português](README.md) · [English](README.en.md) · [简体中文](README.zh-CN.md)
+[Português](README.pt-BR.md) · [English](README.md) · [简体中文](README.zh-CN.md)
 
 [![CI](https://github.com/Danil0ws/pangeia/actions/workflows/ci.yml/badge.svg)](https://github.com/Danil0ws/pangeia/actions/workflows/ci.yml)
 [![Docs](https://img.shields.io/badge/docs-danil0ws.github.io-blue)](https://danil0ws.github.io/pangeia/)
