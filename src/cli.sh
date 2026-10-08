@@ -23,6 +23,9 @@ Commands:
   remove, rm, del        Remove one or more packages
   search, find           Search for a package
   update, upgrade, up    Update the system / all packages
+  list, ls               List installed packages
+  info, show             Show details for a package
+  clean, autoremove      Remove unused packages and cached files
   version                Print the version of the detected manager
   explain, dry-run       Print the native command without running it
   detect, which          Print the detected package manager
@@ -84,6 +87,12 @@ pangeia_main() {
     fi
 
     case "$action" in
+        info)
+            if [ "$#" -eq 0 ]; then
+                pangeia_err "'$command' needs at least one package"
+                return 1
+            fi
+            ;;
         install | remove | search)
             if [ "$#" -eq 0 ]; then
                 pangeia_err "'$command' needs at least one package"

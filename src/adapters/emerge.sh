@@ -22,3 +22,16 @@ pangeia_adapter_search() {
 pangeia_adapter_version() {
     pangeia_query emerge --version
 }
+
+pangeia_adapter_list() {
+    # qlist ships with portage-utils, alongside emerge.
+    pangeia_query qlist -I "$@"
+}
+
+pangeia_adapter_info() {
+    pangeia_query emerge -pv "$@"
+}
+
+pangeia_adapter_clean() {
+    pangeia_run emerge --depclean
+}

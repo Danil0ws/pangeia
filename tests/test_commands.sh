@@ -19,6 +19,9 @@ check_spellings install
 check_spellings remove
 check_spellings search
 check_spellings update
+check_spellings list
+check_spellings info
+check_spellings clean
 check_spellings explain
 check_spellings detect
 check_spellings version
@@ -35,6 +38,22 @@ assert_contains "$out" "unknown command 'verison'" "unmapped command is reported
 assert_contains "$out" "Usage:" "unmapped command prints the help"
 PANGEIA_MANAGER=apt pangeia_main verison >/dev/null 2>&1
 assert_eq 1 "$?" "unmapped command exits 1"
+
+# The commands every manager has reach it in its own syntax.
+out="$(PANGEIA_MANAGER=apt PANGEIA_DRY_RUN=1 pangeia_main list git 2>/dev/null)"
+assert_contains "$out" "dpkg-query -W git" "list on apt"
+out="$(PANGEIA_MANAGER=dnf PANGEIA_DRY_RUN=1 pangeia_main installed 2>/dev/null)"
+assert_contains "$out" "list installed" "alias installed -> list"
+out="$(PANGEIA_MANAGER=apt PANGEIA_DRY_RUN=1 pangeia_main show git 2>/dev/null)"
+assert_contains "$out" "apt-cache show git" "alias show -> info"
+out="$(PANGEIA_MANAGER=apt PANGEIA_DRY_RUN=1 pangeia_main autoremove 2>/dev/null)"
+assert_contains "$out" "apt-get autoremove -y" "alias autoremove -> clean"
+
+# `info` without a package is an error; `clean` needs none.
+PANGEIA_MANAGER=apt pangeia_main info >/dev/null 2>&1
+assert_eq 1 "$?" "info without a package exits 1"
+PANGEIA_MANAGER=apt PANGEIA_DRY_RUN=1 pangeia_main clean >/dev/null 2>&1
+assert_eq 0 "$?" "clean needs no package"
 
 # `version` asks the manager, and asks it in its own syntax.
 out="$(PANGEIA_MANAGER=rpm-ostree PANGEIA_DRY_RUN=1 pangeia_main version 2>/dev/null)"

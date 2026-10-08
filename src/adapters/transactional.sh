@@ -24,3 +24,15 @@ pangeia_adapter_search() {
 pangeia_adapter_version() {
     pangeia_query transactional-update --version
 }
+
+pangeia_adapter_list() {
+    pangeia_query rpm -qa "$@"
+}
+
+pangeia_adapter_info() {
+    pangeia_query zypper info "$@"
+}
+
+pangeia_adapter_clean() {
+    pangeia_run transactional-update cleanup
+}

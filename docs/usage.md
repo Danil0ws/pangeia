@@ -7,6 +7,9 @@ pkg install git curl vim     # instala um ou mais pacotes
 pkg remove firefox           # remove
 pkg search ripgrep           # busca nos repositórios
 pkg update                   # atualiza o sistema / todos os pacotes
+pkg list                     # lista os pacotes instalados
+pkg info ripgrep             # detalhes de um pacote
+pkg clean                    # remove pacotes órfãos e cache
 pkg explain install ripgrep  # mostra o comando nativo, sem executar nada
 pkg detect                   # mostra o gerenciador detectado
 pkg version                  # versão do gerenciador detectado (rpm-ostree --version)
@@ -24,6 +27,9 @@ disso muda o que você digita: `remove` é `apt-get remove -y` no Debian,
 | `remove` | `rm`, `del`, `delete`, `uninstall`, `erase` |
 | `search` | `find`, `s`, `lookup` |
 | `update` | `upgrade`, `up`, `refresh` |
+| `list` | `ls`, `installed` |
+| `info` | `show`, `describe` |
+| `clean` | `cleanup`, `autoremove` |
 | `explain` | `dry-run` |
 | `detect` | `which` |
 

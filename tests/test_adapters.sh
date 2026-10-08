@@ -49,6 +49,34 @@ check rpm-ostree version "rpm-ostree --version"
 check brew version "brew --version"
 check nix version "nix-env --version"
 check pacman version "pacman -V"
+
+# The commands every manager has, each in its own syntax.
+check apt list "dpkg-query -W" git
+check dnf list "list installed" git
+check pacman list "pacman -Q" git
+check zypper list "search --installed-only" git
+check apk list "apk info" git
+check xbps list "xbps-query -l" git
+check emerge list "qlist -I" git
+check rpm-ostree list "rpm-ostree status"
+check transactional list "rpm -qa" git
+check nix list "nix-env -q" git
+check brew list "brew list" git
+
+check apt info "apt-cache show git" git
+check pacman info "pacman -Si git" git
+check nix info "nix-env -qa --description git" git
+check brew info "brew info git" git
+
+check apt clean "apt-get autoremove -y"
+check dnf clean "autoremove -y"
+check pacman clean "pacman -Sc --noconfirm"
+check apk clean "apk cache clean"
+check xbps clean "xbps-remove -O -y"
+check nix clean "nix-collect-garbage -d"
+check rpm-ostree clean "rpm-ostree cleanup -m"
+check transactional clean "transactional-update cleanup"
+check brew clean "brew cleanup"
 check pacman search "pacman -Ss git" git
 check dnf search "search git" git
 check nix search "nix-env -qaP git" git

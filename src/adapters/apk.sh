@@ -22,3 +22,15 @@ pangeia_adapter_search() {
 pangeia_adapter_version() {
     pangeia_query apk --version
 }
+
+pangeia_adapter_list() {
+    pangeia_query apk info "$@"
+}
+
+pangeia_adapter_info() {
+    pangeia_query apk info "$@"
+}
+
+pangeia_adapter_clean() {
+    pangeia_run apk cache clean
+}

@@ -21,3 +21,15 @@ pangeia_adapter_search() {
 pangeia_adapter_version() {
     pangeia_query xbps-install -V
 }
+
+pangeia_adapter_list() {
+    pangeia_query xbps-query -l "$@"
+}
+
+pangeia_adapter_info() {
+    pangeia_query xbps-query -RS "$@"
+}
+
+pangeia_adapter_clean() {
+    pangeia_run xbps-remove -O -y
+}

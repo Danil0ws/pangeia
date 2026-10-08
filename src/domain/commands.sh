@@ -16,6 +16,9 @@ install:install i add get
 remove:remove rm del delete uninstall erase
 search:search find s lookup
 update:update upgrade up refresh
+list:list ls installed
+info:info show describe
+clean:clean cleanup autoremove
 explain:explain dry-run
 detect:detect which
 version:version

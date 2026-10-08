@@ -101,6 +101,15 @@ pangeia_use() {
         version)
             pangeia_adapter_version
             ;;
+        list)
+            pangeia_adapter_list "$@"
+            ;;
+        info)
+            pangeia_adapter_info "$@"
+            ;;
+        clean)
+            pangeia_adapter_clean
+            ;;
         *)
             pangeia_err "unknown action: $action"
             return 1

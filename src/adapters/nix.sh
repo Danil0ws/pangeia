@@ -29,3 +29,15 @@ pangeia_adapter_search() {
 pangeia_adapter_version() {
     pangeia_query nix-env --version
 }
+
+pangeia_adapter_list() {
+    pangeia_query nix-env -q "$@"
+}
+
+pangeia_adapter_info() {
+    pangeia_query nix-env -qa --description "$@"
+}
+
+pangeia_adapter_clean() {
+    pangeia_run nix-collect-garbage -d
+}

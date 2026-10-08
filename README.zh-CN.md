@@ -67,6 +67,9 @@ pkg install git curl      # 安装
 pkg remove firefox        # 卸载
 pkg search ripgrep        # 搜索
 pkg update                # 更新系统
+pkg list                  # 列出已安装软件包
+pkg info htop             # 查看软件包详情
+pkg clean                 # 清理无用软件包与缓存
 pkg explain install htop  # 只显示原生命令，不执行
 pkg detect                # 显示检测到的管理器
 pkg version               # 显示检测到的管理器的版本（rpm-ostree --version）

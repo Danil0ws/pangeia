@@ -69,6 +69,9 @@ pkg install git curl      # установить
 pkg remove firefox        # удалить
 pkg search ripgrep        # найти
 pkg update                # обновить систему
+pkg list                  # список установленных пакетов
+pkg info htop             # сведения о пакете
+pkg clean                 # удалить ненужные пакеты и кэш
 pkg explain install htop  # показать родную команду, ничего не выполняя
 pkg detect                # показать определённый менеджер
 pkg version               # версия определённого менеджера (rpm-ostree --version)

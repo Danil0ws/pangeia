@@ -7,6 +7,9 @@ pkg install git curl vim     # установить один или нескол
 pkg remove firefox           # удалить
 pkg search ripgrep           # искать в репозиториях
 pkg update                   # обновить систему / все пакеты
+pkg list                     # список установленных пакетов
+pkg info ripgrep             # сведения о пакете
+pkg clean                    # удалить ненужные пакеты и кэш
 pkg explain install ripgrep  # показать родную команду, ничего не выполняя
 pkg detect                   # показать определённый менеджер
 pkg version                  # версия определённого менеджера (rpm-ostree --version)
@@ -24,6 +27,9 @@ pkg help                     # справка
 | `remove` | `rm`, `del`, `delete`, `uninstall`, `erase` |
 | `search` | `find`, `s`, `lookup` |
 | `update` | `upgrade`, `up`, `refresh` |
+| `list` | `ls`, `installed` |
+| `info` | `show`, `describe` |
+| `clean` | `cleanup`, `autoremove` |
 | `explain` | `dry-run` |
 | `detect` | `which` |
 

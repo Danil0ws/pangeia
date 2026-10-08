@@ -70,6 +70,9 @@ pkg install git curl      # install
 pkg remove firefox        # remove
 pkg search ripgrep        # search
 pkg update                # update the system
+pkg list                  # list installed packages
+pkg info htop             # show details for a package
+pkg clean                 # remove unused packages and cached files
 pkg explain install htop  # print the native command, run nothing
 pkg detect                # print the detected manager
 pkg version               # version of the detected manager (rpm-ostree --version)

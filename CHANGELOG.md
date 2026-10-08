@@ -10,6 +10,16 @@ release-please. Do not edit generated sections by hand.
 
 ## [Unreleased]
 
+### Added
+
+- `pangeia list`, `pangeia info` and `pangeia clean` (aliases `ls`/`installed`,
+  `show`/`describe`, `cleanup`/`autoremove`), the three remaining commands
+  every supported manager has. Each adapter gained `pangeia_adapter_list`,
+  `pangeia_adapter_info` and `pangeia_adapter_clean`, so the same word is
+  `dpkg-query -W` / `rpm-ostree status` / `pacman -Q` / `brew list` underneath.
+- `pangeia explain` covers them too: `pangeia explain clean` prints the
+  manager's housekeeping commands without running them.
+
 ### Changed
 
 - `pangeia version` asks the **manager**, not Pangeia: it runs

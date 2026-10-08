@@ -30,3 +30,15 @@ pangeia_adapter_search() {
 pangeia_adapter_version() {
     pangeia_query "$(pangeia_dnf_cli)" --version
 }
+
+pangeia_adapter_list() {
+    pangeia_query "$(pangeia_dnf_cli)" list installed "$@"
+}
+
+pangeia_adapter_info() {
+    pangeia_query "$(pangeia_dnf_cli)" info "$@"
+}
+
+pangeia_adapter_clean() {
+    pangeia_run "$(pangeia_dnf_cli)" autoremove -y
+}

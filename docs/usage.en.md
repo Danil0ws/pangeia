@@ -7,6 +7,9 @@ pkg install git curl vim     # install one or more packages
 pkg remove firefox           # remove
 pkg search ripgrep           # search the repositories
 pkg update                   # update the system / all packages
+pkg list                     # list installed packages
+pkg info ripgrep             # show details for a package
+pkg clean                    # remove unused packages and cached files
 pkg explain install ripgrep  # print the native command, run nothing
 pkg detect                   # print the detected manager
 pkg version                  # version of the detected manager (rpm-ostree --version)
@@ -24,6 +27,9 @@ way. You keep typing the same one: `remove` is `apt-get remove -y` on Debian,
 | `remove` | `rm`, `del`, `delete`, `uninstall`, `erase` |
 | `search` | `find`, `s`, `lookup` |
 | `update` | `upgrade`, `up`, `refresh` |
+| `list` | `ls`, `installed` |
+| `info` | `show`, `describe` |
+| `clean` | `cleanup`, `autoremove` |
 | `explain` | `dry-run` |
 | `detect` | `which` |
 

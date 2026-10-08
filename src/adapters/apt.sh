@@ -23,3 +23,16 @@ pangeia_adapter_search() {
 pangeia_adapter_version() {
     pangeia_query apt-get --version
 }
+
+pangeia_adapter_list() {
+    pangeia_query dpkg-query -W "$@"
+}
+
+pangeia_adapter_info() {
+    pangeia_query apt-cache show "$@"
+}
+
+pangeia_adapter_clean() {
+    pangeia_run apt-get autoremove -y
+    pangeia_run apt-get clean
+}

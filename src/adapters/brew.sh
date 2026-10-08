@@ -23,3 +23,15 @@ pangeia_adapter_search() {
 pangeia_adapter_version() {
     pangeia_query brew --version
 }
+
+pangeia_adapter_list() {
+    pangeia_query brew list "$@"
+}
+
+pangeia_adapter_info() {
+    pangeia_query brew info "$@"
+}
+
+pangeia_adapter_clean() {
+    pangeia_run brew cleanup
+}

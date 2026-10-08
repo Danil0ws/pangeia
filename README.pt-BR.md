@@ -70,6 +70,9 @@ pkg install git curl      # instala (também: pangeia install / instalar)
 pkg remove firefox        # remove (remover)
 pkg search ripgrep        # busca (buscar)
 pkg update                # atualiza o sistema (atualizar)
+pkg list                  # lista os pacotes instalados
+pkg info htop             # detalhes de um pacote
+pkg clean                 # remove pacotes órfãos e cache
 pkg explain install htop  # mostra o comando nativo, sem executar
 pkg detect                # mostra o gerenciador detectado
 pkg version               # versão do gerenciador detectado (rpm-ostree --version)

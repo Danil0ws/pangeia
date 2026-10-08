@@ -29,3 +29,16 @@ pangeia_adapter_search() {
 pangeia_adapter_version() {
     pangeia_query rpm-ostree --version
 }
+
+# The overlays live in the deployment list; there is nothing to filter.
+pangeia_adapter_list() {
+    pangeia_query rpm-ostree status
+}
+
+pangeia_adapter_info() {
+    pangeia_query rpm -qi "$@"
+}
+
+pangeia_adapter_clean() {
+    pangeia_run rpm-ostree cleanup -m
+}
