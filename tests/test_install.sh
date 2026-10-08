@@ -24,7 +24,7 @@ assert_contains "$out" "source ~/.bashrc" "says how to load it now"
 assert_eq "1" "$(grep -cF "/shell/pangeia.sh" "$home/.bashrc")" "one source line"
 
 assert_file "$home/bin/pangeia" "binary is linked"
-assert_eq "$(cat "$root/VERSION")" "$("$home/bin/pangeia" --version)" "linked binary runs"
+assert_contains "$("$home/bin/pangeia" help)" "$(cat "$root/VERSION")" "linked binary runs"
 
 # --- second run is idempotent ------------------------------------------
 out="$(run_install 2>&1)"

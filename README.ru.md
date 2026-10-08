@@ -75,7 +75,8 @@ pkg clean                 # удалить ненужные пакеты и кэ
 pkg explain install htop  # показать родную команду, ничего не выполняя
 pkg detect                # показать определённый менеджер
 pkg version               # версия определённого менеджера (rpm-ostree --version)
-pkg --version             # версия самого Pangeia
+pkg --help                # справка менеджера (и -h)
+pkg help                  # справка самого Pangeia
 ```
 
 Команды — стандартные слова с синонимами (`get`, `erase`, `lookup`, `rm`,

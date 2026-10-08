@@ -13,8 +13,8 @@ pkg clean                    # remove unused packages and cached files
 pkg explain install ripgrep  # print the native command, run nothing
 pkg detect                   # print the detected manager
 pkg version                  # version of the detected manager (rpm-ostree --version)
-pkg -v                       # Pangeia's own version
-pkg help                     # help
+pkg --help                   # the manager's help (-h too)
+pkg help                     # Pangeia's own help (it shows Pangeia's version)
 ```
 
 The commands are standard words; underneath, every manager spells them its own
@@ -37,8 +37,10 @@ way. You keep typing the same one: `remove` is `apt-get remove -y` on Debian,
 running anything — the same thing as `PANGEIA_DRY_RUN=1`, with a better name.
 Every command runs the manager's own underneath, `version` included:
 `pkg version` is `rpm-ostree --version` on Silverblue and `apt-get --version`
-on Debian, while `pkg --version` is Pangeia's own. A command with no mapping
-prints this help instead of guessing.
+on Debian, and the same goes for the flags every manager shares — `pkg
+--version`, `pkg -v`, `pkg --help`, `pkg -h`. Pangeia's own version is printed
+by `pkg help`. A command with no mapping prints that help instead of
+guessing.
 
 The shell integration also ships Portuguese aliases:
 

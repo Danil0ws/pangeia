@@ -22,6 +22,11 @@ release-please. Do not edit generated sections by hand.
 
 ### Changed
 
+- The shared flags go to the manager too: `pangeia --version`/`-v` runs
+  `rpm-ostree --version`, `apt-get --version`, ... and `pangeia --help`/`-h`
+  runs the manager's own help, through a new `pangeia_adapter_help`. Pangeia
+  no longer claims `--version` for itself: its own version is printed by
+  `pangeia help` (bare `help` is still Pangeia's).
 - `pangeia version` asks the **manager**, not Pangeia: it runs
   `rpm-ostree --version` on Silverblue, `apt-get --version` on Debian,
   `pacman -V` on Arch, and so on through a new `pangeia_adapter_version` in

@@ -39,3 +39,8 @@ pangeia_adapter_clean() {
     fi
     pangeia_run pacman -Sc --noconfirm
 }
+
+# The manager's own help. `pangeia help` prints Pangeia's.
+pangeia_adapter_help() {
+    pangeia_query pacman --help
+}

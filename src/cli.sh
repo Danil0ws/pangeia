@@ -26,11 +26,11 @@ Commands:
   list, ls               List installed packages
   info, show             Show details for a package
   clean, autoremove      Remove unused packages and cached files
-  version                Print the version of the detected manager
+  version, -v, --version Print the version of the detected manager
   explain, dry-run       Print the native command without running it
   detect, which          Print the detected package manager
-  -v, --version          Print Pangeia's own version
-  help, -h               Print this help
+  -h, --help             Print the manager's help
+  help                   Print this help (Pangeia's own version is the line above)
 
 Every command runs the manager's own command underneath: 'pangeia version'
 is 'rpm-ostree --version' on Silverblue, 'apt-get --version' on Debian.
@@ -59,13 +59,10 @@ pangeia_main() {
 
     local command="$1"
     shift
+    # Bare `help` is Pangeia's; the flags are the manager's.
     case "$command" in
-        help | -h | --help)
+        help)
             pangeia_usage
-            return 0
-            ;;
-        -v | --version)
-            pangeia_version
             return 0
             ;;
     esac

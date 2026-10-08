@@ -36,3 +36,8 @@ pangeia_adapter_info() {
 pangeia_adapter_clean() {
     pangeia_run transactional-update cleanup
 }
+
+# The manager's own help. `pangeia help` prints Pangeia's.
+pangeia_adapter_help() {
+    pangeia_query transactional-update --help
+}

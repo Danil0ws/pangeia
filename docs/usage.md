@@ -13,8 +13,8 @@ pkg clean                    # remove pacotes órfãos e cache
 pkg explain install ripgrep  # mostra o comando nativo, sem executar nada
 pkg detect                   # mostra o gerenciador detectado
 pkg version                  # versão do gerenciador detectado (rpm-ostree --version)
-pkg -v                       # versão do próprio Pangeia
-pkg help                     # ajuda
+pkg --help                   # ajuda do gerenciador (-h também)
+pkg help                     # ajuda do Pangeia (mostra a versão do Pangeia)
 ```
 
 Os comandos são palavras padrão; por baixo, cada gerenciador tem a sua. Nada
@@ -36,9 +36,10 @@ disso muda o que você digita: `remove` é `apt-get remove -y` no Debian,
 `pkg explain <comando>` imprime o comando nativo do seu sistema sem executar
 nada — é o `PANGEIA_DRY_RUN=1` com um nome melhor. Todo comando roda o comando
 do gerenciador por baixo, inclusive `version`: `pkg version` é
-`rpm-ostree --version` no Silverblue e `apt-get --version` no Debian; a versão
-do próprio Pangeia é `pkg --version`. Um comando sem mapeamento imprime esta
-ajuda em vez de adivinhar.
+`rpm-ostree --version` no Silverblue e `apt-get --version` no Debian. O mesmo
+vale para as flags que todo gerenciador tem: `pkg --version`, `pkg -v`,
+`pkg --help` e `pkg -h`. A versão do Pangeia aparece no `pkg help`. Um comando
+sem mapeamento imprime essa ajuda em vez de adivinhar.
 
 Em português, os aliases de shell são:
 

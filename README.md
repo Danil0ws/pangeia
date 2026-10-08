@@ -76,15 +76,17 @@ pkg clean                 # remove unused packages and cached files
 pkg explain install htop  # print the native command, run nothing
 pkg detect                # print the detected manager
 pkg version               # version of the detected manager (rpm-ostree --version)
-pkg --version             # Pangeia's own version
+pkg --help                # the manager's help (-h too)
+pkg help                  # Pangeia's own help
 ```
 
 Commands are standard words with synonyms (`get`, `erase`, `lookup`, `rm`,
 `up`, ...), and each one maps onto the syntax of the manager underneath —
 `remove` is `apt-get remove -y` on Debian, `uninstall` on rpm-ostree, `del` on
 Alpine. `pkg explain <command>` prints what would actually run on this machine, and
-`pkg version` asks the manager (never Pangeia itself: that is `pkg --version`).
-A command with no mapping prints the help instead of running the wrong thing.
+`pkg version` asks the manager — `pkg --version` and `pkg --help` do too, since
+every manager has them. Pangeia's own version is in `pkg help`. A command with
+no mapping prints that help instead of running the wrong thing.
 The whole vocabulary lives in `src/domain/commands.sh`.
 
 Environment variables:

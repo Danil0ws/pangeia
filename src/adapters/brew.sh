@@ -35,3 +35,8 @@ pangeia_adapter_info() {
 pangeia_adapter_clean() {
     pangeia_run brew cleanup
 }
+
+# The manager's own help. `pangeia help` prints Pangeia's.
+pangeia_adapter_help() {
+    pangeia_query brew --help
+}

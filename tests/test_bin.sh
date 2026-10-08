@@ -11,7 +11,12 @@ BIN="$PANGEIA_ROOT/bin/pangeia"
 
 # --- detect and version -------------------------------------------------
 assert_eq "ok" "$([ -n "$("$BIN" detect)" ] && echo ok)" "detect prints a manager"
-assert_eq "$(cat "$PANGEIA_ROOT/VERSION")" "$("$BIN" --version)" "--version matches VERSION"
+assert_contains "$("$BIN" help)" "$(cat "$PANGEIA_ROOT/VERSION")" "help shows Pangeia's version"
+
+out="$(PANGEIA_MANAGER=pacman PANGEIA_DRY_RUN=1 "$BIN" --version 2>/dev/null)"
+assert_contains "$out" "pacman -V" "--version goes to the manager"
+out="$(PANGEIA_MANAGER=apt PANGEIA_DRY_RUN=1 "$BIN" --help 2>/dev/null)"
+assert_contains "$out" "apt-get --help" "--help goes to the manager"
 
 out="$(PANGEIA_MANAGER=apt PANGEIA_DRY_RUN=1 "$BIN" version 2>/dev/null)"
 assert_contains "$out" "apt-get --version" "version asks the manager"

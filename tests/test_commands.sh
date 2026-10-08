@@ -65,6 +65,19 @@ assert_contains "$out" "--version" "version on dnf"
 out="$(PANGEIA_MANAGER=apt pangeia_main explain version 2>/dev/null)"
 assert_contains "$out" "apt-get --version" "explain version"
 
+# The manager's flags are the manager's, not Pangeia's.
+out="$(PANGEIA_MANAGER=rpm-ostree PANGEIA_DRY_RUN=1 pangeia_main --version 2>/dev/null)"
+assert_contains "$out" "rpm-ostree --version" "--version on rpm-ostree"
+out="$(PANGEIA_MANAGER=apt PANGEIA_DRY_RUN=1 pangeia_main -v 2>/dev/null)"
+assert_contains "$out" "apt-get --version" "-v on apt"
+out="$(PANGEIA_MANAGER=apt PANGEIA_DRY_RUN=1 pangeia_main -h 2>/dev/null)"
+assert_contains "$out" "apt-get --help" "-h on apt"
+out="$(PANGEIA_MANAGER=brew pangeia_main explain --help 2>/dev/null)"
+assert_contains "$out" "brew --help" "explain --help"
+
+# Bare `help` is still Pangeia's own.
+assert_contains "$(PANGEIA_MANAGER=apt pangeia_main help 2>&1)" "Usage:" "help is Pangeia's"
+
 # explain prints the native command of the detected manager, without
 # running it, and accepts the same spellings as the real command.
 out="$(PANGEIA_MANAGER=apt pangeia_main explain install ripgrep 2>/dev/null)"
@@ -80,9 +93,13 @@ assert_contains "$out" "rpm-ostree install htop" "explain rpm-ostree install"
 PANGEIA_MANAGER=apt pangeia_main explain >/dev/null 2>&1
 assert_eq 1 "$?" "explain without a command exits 1"
 
-# The help text documents every canonical action.
+# The help text documents every canonical action. `native-help` is the
+# exception: the user-facing words for it are the flags (-h, --help).
 usage="$(pangeia_usage)"
 for action in $(pangeia_actions); do
+    case "$action" in
+        native-help) continue ;;
+    esac
     assert_contains "$usage" "$action" "usage documents $action"
 done
 

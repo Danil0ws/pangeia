@@ -42,3 +42,8 @@ pangeia_adapter_info() {
 pangeia_adapter_clean() {
     pangeia_run "$(pangeia_dnf_cli)" autoremove -y
 }
+
+# The manager's own help. `pangeia help` prints Pangeia's.
+pangeia_adapter_help() {
+    pangeia_query "$(pangeia_dnf_cli)" --help
+}

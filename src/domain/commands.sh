@@ -20,9 +20,10 @@ list:list ls installed
 info:info show describe
 clean:clean cleanup autoremove
 explain:explain dry-run
+native-help:-h --help
 detect:detect which
-version:version
-help:help -h --help
+version:version -v --version
+help:help
 EOF
 }
 

@@ -36,3 +36,8 @@ pangeia_adapter_clean() {
     pangeia_run apt-get autoremove -y
     pangeia_run apt-get clean
 }
+
+# The manager's own help. `pangeia help` prints Pangeia's.
+pangeia_adapter_help() {
+    pangeia_query apt-get --help
+}

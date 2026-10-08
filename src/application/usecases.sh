@@ -110,6 +110,9 @@ pangeia_use() {
         clean)
             pangeia_adapter_clean
             ;;
+        native-help)
+            pangeia_adapter_help
+            ;;
         *)
             pangeia_err "unknown action: $action"
             return 1

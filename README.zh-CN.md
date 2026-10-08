@@ -73,7 +73,8 @@ pkg clean                 # 清理无用软件包与缓存
 pkg explain install htop  # 只显示原生命令，不执行
 pkg detect                # 显示检测到的管理器
 pkg version               # 显示检测到的管理器的版本（rpm-ostree --version）
-pkg --version             # 显示 Pangeia 自身的版本
+pkg --help                # 管理器的帮助（也可用 -h）
+pkg help                  # Pangeia 自身的帮助
 ```
 
 命令是统一的标准词，各有同义词（`get`、`erase`、`lookup`、`rm`、`up`……），

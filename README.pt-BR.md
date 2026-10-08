@@ -76,16 +76,18 @@ pkg clean                 # remove pacotes órfãos e cache
 pkg explain install htop  # mostra o comando nativo, sem executar
 pkg detect                # mostra o gerenciador detectado
 pkg version               # versão do gerenciador detectado (rpm-ostree --version)
-pkg --version             # versão do próprio Pangeia
+pkg --help                # ajuda do gerenciador (-h também)
+pkg help                  # ajuda do Pangeia
 ```
 
 Os comandos são palavras padrão com sinônimos (`get`, `erase`, `lookup`, `rm`,
 `up`...) e cada um é traduzido para a sintaxe do gerenciador por baixo —
 `remove` é `apt-get remove -y` no Debian, `uninstall` no rpm-ostree e `del` no
 Alpine. `pkg explain <comando>` mostra o que rodaria nesta máquina, e
-`pkg version` pergunta ao gerenciador — nunca ao Pangeia, que é
-`pkg --version`. Um comando sem mapeamento imprime a ajuda em vez de rodar
-outra coisa. O vocabulário todo vive em `src/domain/commands.sh`.
+`pkg version` pergunta ao gerenciador — `pkg --version` e `pkg --help` também,
+porque todo gerenciador os tem. A versão do Pangeia aparece no `pkg help`. Um
+comando sem mapeamento imprime essa ajuda em vez de rodar outra coisa. O
+vocabulário todo vive em `src/domain/commands.sh`.
 
 Variáveis de ambiente:
 

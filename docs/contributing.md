@@ -29,7 +29,7 @@ Sem dependências: é bash puro e roda em Linux, macOS e no GitHub Actions.
 | Caminho | Responsabilidade |
 |---|---|
 | `src/domain/` | Decisões puras: detecção, tradução de nomes e vocabulário de comandos |
-| `src/adapters/` | Um arquivo por gerenciador, oito funções cada |
+| `src/adapters/` | Um arquivo por gerenciador, nove funções cada |
 | `src/application/` | Casos de uso que orquestram domínio e adaptadores |
 | `src/cli.sh` | Argumentos e saída para o usuário |
 | `bin/pangeia` | Ponto de entrada que liga as camadas |
