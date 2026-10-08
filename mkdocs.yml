@@ -1,0 +1,69 @@
+site_name: Pangeia
+site_description: One command to install packages on any Linux distribution.
+site_url: https://danil0ws.github.io/pangeia/
+repo_url: https://github.com/Danil0ws/pangeia
+repo_name: Danil0ws/pangeia
+edit_uri: edit/main/docs/
+copyright: MIT © Danilo Rodrigues
+
+theme:
+  name: material
+  language: pt
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+  features:
+    - navigation.instant
+    - navigation.top
+    - content.code.copy
+
+extra:
+  alternate:
+    - name: Português
+      link: /pangeia/
+      lang: pt
+    - name: English
+      link: /pangeia/en/
+      lang: en
+    - name: 简体中文
+      link: /pangeia/zh/
+      lang: zh
+    - name: Русский
+      link: /pangeia/ru/
+      lang: ru
+
+plugins:
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      languages:
+        - locale: pt
+          name: Português
+          default: true
+        - locale: en
+          name: English
+        - locale: zh
+          name: 简体中文
+        - locale: ru
+          name: Русский
+
+markdown_extensions:
+  - admonition
+  - tables
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Contributing: contributing.md

@@ -1,0 +1,33 @@
+name: Feature request
+description: Suggest a package manager, a mapping or a new command.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep it small. Pangeia prefers deletion over addition.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of request is this?
+      options:
+        - New package manager support
+        - Package-name mapping
+        - New command or flag
+        - Documentation or translation
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does it solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: For a new manager, include the install/remove/search/update commands.
+    validations:
+      required: false

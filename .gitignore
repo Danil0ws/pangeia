@@ -1,0 +1,10 @@
+# Build and documentation output
+site/
+dist/
+.cache/
+
+# Editor and OS noise
+.DS_Store
+*.swp
+.idea/
+.vscode/

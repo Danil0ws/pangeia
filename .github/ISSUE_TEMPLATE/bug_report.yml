@@ -1,0 +1,49 @@
+name: Bug report
+description: Something does not work as expected.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please answer in English if you can.
+  - type: input
+    id: distribution
+    attributes:
+      label: Distribution and version
+      placeholder: Ubuntu 24.04, Arch, Fedora Silverblue 41, Alpine 3.21...
+    validations:
+      required: true
+  - type: input
+    id: manager
+    attributes:
+      label: Output of `pkg detect`
+      placeholder: apt
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command you ran
+      placeholder: pkg install htop
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+      description: Paste the full output. `PANGEIA_DRY_RUN=1 pkg ...` is often useful too.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Pangeia version
+      placeholder: output of `pkg version`
+    validations:
+      required: true

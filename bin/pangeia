@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Pangeia - one command to install packages on any Linux distribution.
+#
+# This is the executable entry point. It resolves its own location,
+# loads the layers (domain, adapters, application, cli) and hands
+# control to the command-line interface.
+#
+# No `set -e`: the CLI decides what to do with each command's exit
+# status, and adapters must be able to fail without killing the shell.
+
+set -uo pipefail
+
+# Resolve symlinks so a symlinked ~/.local/bin/pangeia still finds the
+# real installation root.
+_pangeia_bin="${BASH_SOURCE[0]}"
+while [ -h "$_pangeia_bin" ]; do
+    _pangeia_link="$(readlink "$_pangeia_bin")"
+    case "$_pangeia_link" in
+        /*) _pangeia_bin="$_pangeia_link" ;;
+        *) _pangeia_bin="$(dirname "$_pangeia_bin")/$_pangeia_link" ;;
+    esac
+done
+PANGEIA_ROOT="$(cd "$(dirname "$_pangeia_bin")/.." && pwd)"
+PANGEIA_SRC="$PANGEIA_ROOT/src"
+export PANGEIA_ROOT PANGEIA_SRC
+
+# shellcheck source=/dev/null
+. "$PANGEIA_SRC/lib/common.sh"
+# shellcheck source=/dev/null
+. "$PANGEIA_SRC/domain/detect.sh"
+# shellcheck source=/dev/null
+. "$PANGEIA_SRC/domain/mapping.sh"
+# shellcheck source=/dev/null
+. "$PANGEIA_SRC/application/usecases.sh"
+# shellcheck source=/dev/null
+. "$PANGEIA_SRC/cli.sh"
+
+pangeia_main "$@"
